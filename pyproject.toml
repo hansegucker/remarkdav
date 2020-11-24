@@ -6,6 +6,7 @@ authors = ["Jonathan Weth <git@jonathanweth.de>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
+dynaconf = "^3.1.2"
 
 
 [build-system]
