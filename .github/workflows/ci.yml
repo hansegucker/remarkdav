@@ -17,6 +17,8 @@ jobs:
       - name: Run image
         uses: abatilo/actions-poetry@v2.0.0
       - name: Install dependencies
-        run: poetry install
+        run:
+          - poetry install
+          - poetry config virtualenvs.create false
       - name: Lint
         run: tox -e lint,security
