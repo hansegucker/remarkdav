@@ -1,0 +1,3 @@
+[[mappings]]
+id = "dav"
+webdav = { hostname="https://<url>/", base_path="/webdav.php/", login="<username>", password="<password>"}

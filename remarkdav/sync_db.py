@@ -14,4 +14,5 @@ class File(Model):
     class Meta:
         database = db
 
+
 db.create_tables([File], safe=True)

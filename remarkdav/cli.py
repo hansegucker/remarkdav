@@ -3,7 +3,6 @@ import shutil
 import tempfile
 import time
 from threading import Thread
-from uuid import uuid4
 
 import click
 import dateparser
@@ -13,7 +12,7 @@ from webdav3.client import Client
 from remarkdav.config import settings
 from remarkdav.crawl import CrawlRegistry, CrawlThread
 from remarkdav.sync_db import File
-from remarkdav.utils import has_extension, get_filename, make_unique_filename
+from remarkdav.utils import get_filename, has_extension, make_unique_filename
 
 
 @click.group()
@@ -57,7 +56,8 @@ def sync():
         return
 
     for mapping in mappings:
-        click.echo(f"Run synchronisation for config {mapping}")
+        mapping_id = mapping["id"]
+        click.echo(f"Run synchronisation for config {mapping_id}")
         options = {
             "webdav_hostname": mapping["webdav"]["hostname"],
             "webdav_login": mapping["webdav"]["login"],
@@ -67,8 +67,7 @@ def sync():
 
         # Start crawler
         registry = CrawlRegistry()
-        DOWNLOAD_PATH = "/webdav.php/ilias/ref_20086/"
-        crawl_thread = CrawlThread(client, registry, DOWNLOAD_PATH)
+        crawl_thread = CrawlThread(client, registry, mapping["webdav"]["base_path"])
         crawl_thread.run()
         while len(registry.threads) > 0:
             time.sleep(0.5)
@@ -92,7 +91,7 @@ def sync():
             filename = get_filename(path["path"])
             path["filename"] = filename
             path["download_filename"] = os.path.join(temp_directory, make_unique_filename(filename))
-            path["upload_path"] = path["path"].replace(DOWNLOAD_PATH, "")
+            path["upload_path"] = path["path"].replace(mapping["webdav"]["base_path"], "")
 
             sync_this_file = False
 
@@ -133,7 +132,7 @@ def sync():
 
         for file in qs:
             # UPLOAD HERE TO REMARKABLE
-            click.echo(f"Upload file {file.path} to ReMarkable Cloud")
+            click.echo(f"Upload file {file.upload_path} to ReMarkable Cloud")
             file.uploaded = True
             file.save()
 
