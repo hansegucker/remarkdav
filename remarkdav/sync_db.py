@@ -1,4 +1,4 @@
-from peewee import *
+from peewee import BooleanField, CharField, DateTimeField, Model, SqliteDatabase
 
 db = SqliteDatabase("sync.db")
 

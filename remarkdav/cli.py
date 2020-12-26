@@ -55,7 +55,6 @@ class DownloadThread(Thread):
 @cli.command()
 def sync():
     """Run synchronisation for all mappings."""
-
     # Authenticate against reMarkable API
     rmapy = RMClient()
 
@@ -125,7 +124,9 @@ def sync():
 
             # Check whether this file has already been synced
             qs = File.select().where(
-                File.path == path["path"], File.source == mapping["id"], File.uploaded == True
+                File.path == path["path"],
+                File.source == mapping["id"],
+                File.uploaded == True,  # noqa
             )
             if qs.count() >= 1:
                 # Get object and modification timestamp
@@ -155,7 +156,7 @@ def sync():
 
         # Get all files to upload
         qs = File.select().where(
-            File.source == mapping["id"], File.downloaded == True, File.uploaded == False
+            File.source == mapping["id"], File.downloaded == True, File.uploaded == False  # noqa
         )
 
         for file in qs:
