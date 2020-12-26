@@ -1,6 +1,6 @@
 remarkdav
 =========
-This is a small script to sync files from a webdav directory to the reMarkable cloud (oneway).
+This is a small tool to sync webdav files (only PDF) to the reMarkable cloud (oneway).
 
 Setup (dev)
 -----------
