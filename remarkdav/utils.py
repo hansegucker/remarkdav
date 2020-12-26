@@ -1,5 +1,4 @@
 from typing import List
-from uuid import uuid4
 
 
 def clean_path(path: str) -> str:
@@ -24,10 +23,6 @@ def get_filename(path: str):
 
 def get_extension(path: str):
     return path.split(".")[-1]
-
-
-def make_unique_filename(filename: str):
-    return f"{uuid4()}_filename"
 
 
 def has_extension(filename: str, extensions: List[str]):

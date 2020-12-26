@@ -10,6 +10,7 @@ class File(Model):
     downloaded = BooleanField(default=False)
     uploaded = BooleanField(default=False)
     upload_path = CharField(default="", null=True)
+    local_path = CharField(default="", null=True)
 
     class Meta:
         database = db
