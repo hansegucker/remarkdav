@@ -5,7 +5,7 @@ description = "A tool to sync webdav files (only PDF) to the reMarkable cloud"
 authors = ["Jonathan Weth <dev@jonathanweth.de>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.7"
 dynaconf = "^3.1.2"
 click = "^7.1.2"
 webdavclient3 = "^3.14.5"
