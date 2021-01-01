@@ -8,14 +8,15 @@ from uuid import uuid4
 import click
 import dateparser
 from rmapy.api import Client as RMClient
-from rmapy.document import ZipDocument
+from rmapy.document import Document, ZipDocument
 from rmapy.exceptions import AuthError
-from rmapy.folder import Folder
 from tabulate import tabulate
 from webdav3.client import Client
 
 from remarkdav.config import settings
 from remarkdav.crawl import CrawlRegistry, CrawlThread
+from remarkdav.pdf import create_sync_status_pdf
+from remarkdav.rmapy_util import create_folders
 from remarkdav.sync_db import File
 from remarkdav.utils import get_filename, has_extension
 
@@ -167,39 +168,43 @@ def sync():
             folders = [mapping["base_folder"]] + path_split[:-1]
             filename = path_split[-1]
 
-            # Get all existing folders
-            r_collection = rmapy.get_meta_items()
-            r_folders = {f.ID: f for f in r_collection if isinstance(f, Folder)}
-
-            # Create folder structure
-            current_folder = None
-            current_parent = ""
-            for folder in folders:
-                # Search for folder
-                folder_found = False
-                for r_id, r_folder in r_folders.items():
-                    if r_folder.VissibleName == folder and r_folder.Parent == current_parent:
-                        current_folder = r_folder
-                        current_parent = r_id
-                        folder_found = True
-                        break
-
-                # Not found: create
-                if not folder_found:
-                    current_folder = Folder(folder, Parent=current_parent)
-                    rmapy.create_folder(current_folder)
-                    current_parent = current_folder.ID
+            upload_folder = create_folders(rmapy, *folders)
 
             # Upload new document to cloud
             doc = ZipDocument(doc=os.path.abspath(file.local_path))
             doc.metadata["VissibleName"] = filename.split(".")[0]
-            rmapy.upload(doc, current_folder)
+            rmapy.upload(doc, upload_folder)
 
             # Save sync status
             file.uploaded = True
             file.save()
 
             click.secho("  Upload finished.", fg="green")
+
+        # Create sync status
+        sync_doc_name = "Sync status"
+        sync_status_filename = create_sync_status_pdf(mapping)
+
+        # Create folder
+        sync_status_folder = create_folders(rmapy, mapping["base_folder"])
+
+        # Get all existing documents
+        r_collection = rmapy.get_meta_items()
+
+        for meta_item in r_collection:
+            if (
+                isinstance(meta_item, Document)
+                and meta_item.VissibleName == sync_doc_name
+                and meta_item.Parent == sync_status_folder.ID
+            ):
+                # Delete old file
+                rmapy.delete(meta_item)
+                break
+
+        # Upload new document to cloud
+        doc = ZipDocument(doc=sync_status_filename)
+        doc.metadata["VissibleName"] = sync_doc_name
+        rmapy.upload(doc, sync_status_folder)
 
         # Clean up temp directory
         shutil.rmtree(temp_directory)

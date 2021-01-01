@@ -13,6 +13,7 @@ dateparser = "^1.0.0"
 tabulate = "^0.8.7"
 peewee = "^3.14.0"
 rmapy = "^0.2.2"
+fpdf = "^1.7.2"
 
 [tool.poetry.dev-dependencies]
 tox = "^3.20.1"
