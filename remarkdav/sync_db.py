@@ -1,6 +1,8 @@
 from peewee import BooleanField, CharField, DateTimeField, Model, SqliteDatabase
 
-db = SqliteDatabase("sync.db")
+from remarkdav.config import settings
+
+db = SqliteDatabase(settings.get("db_path", "sync.db"))
 
 
 class File(Model):
