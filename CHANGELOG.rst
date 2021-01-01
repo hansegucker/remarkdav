@@ -1,6 +1,10 @@
 Changelog
 =========
 
+v1.0-beta
+---------
+* Switch to other version branch and downgrade required Python version to 3.7
+
 v0.1.0-beta2
 ------------
 * Upload a PDF to reMarkable cloud with meta information about the last successful sync (#7)
