@@ -1,7 +1,9 @@
 from threading import Thread
 from uuid import uuid4
 
+import click
 import dateparser
+from webdav3.exceptions import WebDavException
 
 from remarkdav.utils import clean_path, last_part_of_path, simple_path
 
@@ -42,7 +44,11 @@ class CrawlThread(Thread):
         base_path = clean_path(self.base_path)
 
         # Get sub dirs
-        sub_paths = self.client.list(base_path, get_info=True)
+        try:
+            sub_paths = self.client.list(base_path, get_info=True)
+        except WebDavException:
+            click.secho(f"Check of {base_path} failed.", fg="red")
+            self.registry.unlock(self.lock)
 
         for sub_path in sub_paths:
             sub_path = parse_file_info(sub_path)
@@ -50,11 +56,12 @@ class CrawlThread(Thread):
             if simple_path(sub_path["path"]) == last_part_of_path(base_path):
                 continue
 
-            # Add path to registry
-            self.registry.add(sub_path)
+            if sub_path not in self.registry.paths:
+                # Add path to registry
+                self.registry.add(sub_path)
 
-            # Start new thread for sub dirs
-            new_thread = CrawlThread(self.client, self.registry, sub_path["path"])
-            new_thread.start()
+                # Start new thread for sub dirs
+                new_thread = CrawlThread(self.client, self.registry, sub_path["path"])
+                new_thread.start()
 
         self.registry.unlock(self.lock)

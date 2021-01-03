@@ -1,6 +1,12 @@
 Changelog
 =========
 
+v1.0-beta2
+----------
+* Catch exceptions
+* Ensure that files aren't downloaded twice
+* Update dependencies
+
 v1.0-beta
 ---------
 * Switch to other version branch and downgrade required Python version to 3.7

@@ -12,6 +12,7 @@ from rmapy.document import Document, ZipDocument
 from rmapy.exceptions import AuthError
 from tabulate import tabulate
 from webdav3.client import Client
+from webdav3.exceptions import WebDavException
 
 from remarkdav.config import settings
 from remarkdav.crawl import CrawlRegistry, CrawlThread
@@ -39,9 +40,13 @@ class DownloadThread(Thread):
     def run(self):
         filename = self.path["filename"]
         click.echo(f"Download {filename}")
-        self.client.download_sync(
-            remote_path=self.path["path"], local_path=self.path["download_path"]
-        )
+        try:
+            self.client.download_sync(
+                remote_path=self.path["path"], local_path=self.path["download_path"]
+            )
+        except WebDavException:
+            click.secho(f"Download of {filename} failed.", fg="red")
+            return
         click.echo(f"Download of {filename} finished.")
 
         file, _ = File.get_or_create(path=self.path["path"], source=self.source)
@@ -84,6 +89,7 @@ def sync():
             "webdav_hostname": mapping["webdav"]["hostname"],
             "webdav_login": mapping["webdav"]["login"],
             "webdav_password": mapping["webdav"]["password"],
+            "webdav_timeout": 60,
         }
         client = Client(options)
 
