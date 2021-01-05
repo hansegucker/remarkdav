@@ -10,7 +10,6 @@ import dateparser
 from rmapy.api import Client as RMClient
 from rmapy.document import Document, ZipDocument
 from rmapy.exceptions import AuthError
-from tabulate import tabulate
 from webdav3.client import Client
 from webdav3.exceptions import WebDavException
 
@@ -19,7 +18,7 @@ from remarkdav.crawl import CrawlRegistry, CrawlThread
 from remarkdav.pdf import create_sync_status_pdf
 from remarkdav.rmapy_util import create_folders
 from remarkdav.sync_db import File
-from remarkdav.utils import get_filename, has_extension
+from remarkdav.utils import check_pdf_file, get_filename, has_extension
 
 
 @click.group()
@@ -31,31 +30,38 @@ RELEVANT_FILE_ENDINGS = ["pdf"]
 
 
 class DownloadThread(Thread):
-    def __init__(self, client, path, source):
+    def __init__(self, client, paths_to_sync, source):
         super().__init__()
         self.client = client
-        self.path = path
+        self.paths = paths_to_sync
         self.source = source
 
     def run(self):
-        filename = self.path["filename"]
-        click.echo(f"Download {filename}")
-        try:
-            self.client.download_sync(
-                remote_path=self.path["path"], local_path=self.path["download_path"]
-            )
-        except WebDavException:
-            click.secho(f"Download of {filename} failed.", fg="red")
-            return
-        click.echo(f"Download of {filename} finished.")
+        while len(self.paths) > 0:
+            path = self.paths.pop()
 
-        file, _ = File.get_or_create(path=self.path["path"], source=self.source)
-        file.downloaded = True
-        file.synced = False
-        file.modified = self.path["modified"]
-        file.upload_path = self.path["upload_path"]
-        file.local_path = self.path["download_path"]
-        file.save()
+            filename = path["filename"]
+            click.echo(f"Download {filename}")
+            try:
+                self.client.download_sync(
+                    remote_path=path["path"], local_path=path["download_path"]
+                )
+            except WebDavException:
+                click.secho(f"Download of {filename} failed.", fg="red")
+                return
+            click.echo(f"Download of {filename} finished.")
+
+            valid_pdf = check_pdf_file(path["download_path"])
+            if not valid_pdf:
+                click.secho(f"File {filename} is not a valid PDF.")
+
+            file, _ = File.get_or_create(path=path["path"], source=self.source)
+            file.downloaded = True
+            file.synced = False
+            file.modified = path["modified"]
+            file.upload_path = path["upload_path"]
+            file.local_path = path["download_path"]
+            file.save()
 
 
 @cli.command()
@@ -95,26 +101,43 @@ def sync():
 
         # Start crawler
         registry = CrawlRegistry()
-        crawl_thread = CrawlThread(client, registry, mapping["webdav"]["base_path"])
-        crawl_thread.run()
-        while len(registry.threads) > 0:
+        thread = CrawlThread(client, registry, mapping["webdav"]["base_path"])
+        thread.start()
+
+        # Run crawl threads
+        running = 0  # Currently running threads
+        while len(registry.stack) > 0 or len(registry.threads) > 0:
+            while running < 10:
+                if len(registry.stack) == 0:
+                    break
+                thread = registry.stack.pop()
+                thread.start()
             time.sleep(0.5)
             click.echo(f"Load paths: {len(registry.paths)} directories or files detected.")
 
-        all_paths = registry.paths
-
-        # Print found paths
-        print(tabulate(all_paths))
-        print(f"{len(all_paths)} paths were found")
+        # Show count of errors
+        if registry.errors > 0:
+            click.secho(
+                f"{registry.errors} download errors have been detected and resolved.", fg="red"
+            )
+        if registry.unresolved_errors > 0:
+            click.secho(
+                f"{registry.unresolved_errors} errors have been detected and are unresolved.",
+                fg="red",
+            )
 
         # Filter paths
-        my_paths = filter(
-            lambda path: has_extension(path["path"], RELEVANT_FILE_ENDINGS), all_paths
+        my_paths = list(
+            filter(lambda path: has_extension(path["path"], RELEVANT_FILE_ENDINGS), registry.paths)
         )
+
+        # Print found PDF paths
+        print(my_paths)
+        print(f"{len(my_paths)} PDF files were found.")
 
         # Make temp directory for downloads
         temp_directory = tempfile.mkdtemp()
-        threads = []
+        paths_to_sync = []
         for path in my_paths:
             filename = get_filename(path["path"])
             path["filename"] = filename
@@ -152,10 +175,15 @@ def sync():
                 sync_this_file = True
 
             if sync_this_file:
-                # Start download thread
-                thread = DownloadThread(client, path, mapping["id"])
-                thread.start()
-                threads.append(thread)
+                # Add path to download list
+                paths_to_sync.append(path)
+
+        # Start download threads
+        threads = []
+        for i in range(10):
+            thread = DownloadThread(client, paths_to_sync, mapping["id"])
+            thread.start()
+            threads.append(thread)
 
         # Wait until all files are downloaded
         for thread in threads:

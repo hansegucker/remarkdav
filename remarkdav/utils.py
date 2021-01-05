@@ -1,5 +1,8 @@
 from typing import List
 
+from PyPDF2 import PdfFileReader
+from PyPDF2.utils import PdfReadError
+
 
 def clean_path(path: str) -> str:
     if path[-1] != "/":
@@ -27,3 +30,12 @@ def get_extension(path: str):
 
 def has_extension(filename: str, extensions: List[str]):
     return get_extension(filename) in extensions
+
+
+def check_pdf_file(path: str) -> bool:
+    """Check if a file is a valid PDF file."""
+    try:
+        PdfFileReader(open(path, "rb"))
+    except PdfReadError:
+        return False
+    return True

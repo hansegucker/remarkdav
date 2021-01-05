@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "remarkdav"
-version = "1.0-beta2"
+version = "1.0-beta3"
 description = "A tool to sync webdav files (only PDF) to the reMarkable cloud"
 authors = ["Jonathan Weth <dev@jonathanweth.de>"]
 
@@ -10,10 +10,10 @@ dynaconf = "^3.1.2"
 click = "^7.1.2"
 webdavclient3 = "^3.14.5"
 dateparser = "^1.0.0"
-tabulate = "^0.8.7"
 peewee = "^3.14.0"
 rmapy = "^0.2.2"
 fpdf = "^1.7.2"
+PyPDF2 = "^1.26.0"
 
 [tool.poetry.dev-dependencies]
 tox = "^3.20.1"

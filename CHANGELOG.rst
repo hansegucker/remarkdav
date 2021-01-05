@@ -1,6 +1,13 @@
 Changelog
 =========
 
+v1.0-beta3
+----------
+* Rerun webdav operations in case of failure
+* Check PDF files for validity
+* Optimize download threads (keep a maximum of operations)
+* Improve log prints
+
 v1.0-beta2
 ----------
 * Catch exceptions
