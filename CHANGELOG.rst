@@ -1,6 +1,10 @@
 Changelog
 =========
 
+v1.0-beta4
+----------
+* Use rmapi for uploading documents instead of rmapy because files uploaded by rmapy seems to be corrupt sometimes
+
 v1.0-beta3
 ----------
 * Rerun webdav operations in case of failure

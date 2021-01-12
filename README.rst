@@ -5,25 +5,29 @@ This is a small tool to sync webdav files (only PDF) to the reMarkable cloud (on
 Setup (dev)
 -----------
 
-1. Clone from Git
+1. Get rmapi (Go CLI application)
+
+see instructions at https://github.com/juruen/rmapi
+
+2. Clone from Git
 
 .. code-block::
 
     git clone git@github.com:hansegucker/remarkdav.git
 
-2. Get poetry
+3. Get poetry
 
 See instructions at https://python-poetry.org/docs/#installation
 
 
-3. Install dependencies
+4. Install dependencies
 
 .. code-block::
 
     $ cd remarkdav/ # Go to your cloned directory
     $ poetry install
 
-3. Run
+5. Run
 
 .. code-block::
 
@@ -32,13 +36,17 @@ See instructions at https://python-poetry.org/docs/#installation
 Setup (production)
 ------------------
 
-1. Get it via poetry (use pip with Python 3)
+1. Get rmapi (Go CLI application)
+
+see instructions at https://github.com/juruen/rmapi
+
+2. Get it via poetry (use pip with Python 3)
 
 .. code-block::
 
     $ sudo pip install -G remarkdav
 
-2. Run
+3. Run
 
 .. code-block::
 

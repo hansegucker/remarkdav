@@ -1,5 +1,6 @@
 import os
 import shutil
+import subprocess  # noqa
 import tempfile
 import time
 from threading import Thread
@@ -200,14 +201,12 @@ def sync():
             # Get necessary folders and the filename
             path_split = file.upload_path.split("/")
             folders = [mapping["base_folder"]] + path_split[:-1]
-            filename = path_split[-1]
 
-            upload_folder = create_folders(rmapy, *folders)
+            create_folders(rmapy, *folders)
 
-            # Upload new document to cloud
-            doc = ZipDocument(doc=os.path.abspath(file.local_path))
-            doc.metadata["VissibleName"] = filename.split(".")[0]
-            rmapy.upload(doc, upload_folder)
+            # Upload new document to cloud using rmapi
+            folder_path = "/" + "/".join(folders)
+            subprocess.run(["rmapi", "put", os.path.abspath(file.local_path), folder_path])  # noqa
 
             # Save sync status
             file.uploaded = True
