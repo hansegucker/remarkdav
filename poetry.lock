@@ -670,7 +670,7 @@ doc = ["sphinx (==2.2.0)", "sphinx-autodoc-typehints (==1.8.0)", "guzzle-sphinx-
 
 [[package]]
 name = "safety"
-version = "1.10.2.post1"
+version = "1.10.3"
 description = "Checks installed dependencies for known vulnerabilities."
 category = "dev"
 optional = false
@@ -857,7 +857,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "626c5dce319ebb7c4db80650ef8b3cfd16fb880b67a798ce077bd10c341343a4"
+content-hash = "1882b08201352525db4b006fe3b0d7692147ea7ab0bfcffc4fc7dd7dbda702ea"
 
 [metadata.files]
 appdirs = [
@@ -1234,8 +1234,8 @@ rmapy = [
     {file = "rmapy-0.2.2.tar.gz", hash = "sha256:0f1cdea9219711ec258fdd0a2cbb0351d45b5ac976ef8a423c3d42d4555db317"},
 ]
 safety = [
-    {file = "safety-1.10.2.post1-py2.py3-none-any.whl", hash = "sha256:6f50edff1c5162d096cacd9557406b32c021c77fe8d2229750eeff22a3e10dfe"},
-    {file = "safety-1.10.2.post1.tar.gz", hash = "sha256:1d8f904c7df7c99f094154a6d2c3ae9703fd2fa58914bd80e005e860a9f4045c"},
+    {file = "safety-1.10.3-py2.py3-none-any.whl", hash = "sha256:5f802ad5df5614f9622d8d71fedec2757099705c2356f862847c58c6dfe13e84"},
+    {file = "safety-1.10.3.tar.gz", hash = "sha256:30e394d02a20ac49b7f65292d19d38fa927a8f9582cdfd3ad1adbbc66c641ad5"},
 ]
 six = [
     {file = "six-1.15.0-py2.py3-none-any.whl", hash = "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"},
