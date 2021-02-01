@@ -655,7 +655,7 @@ docutils = ">=0.11,<1.0"
 
 [[package]]
 name = "rmapy"
-version = "0.2.2"
+version = "0.2.3"
 description = "Remarkable Cloud Api Client"
 category = "main"
 optional = false
@@ -1230,8 +1230,8 @@ restructuredtext-lint = [
     {file = "restructuredtext_lint-1.3.2.tar.gz", hash = "sha256:d3b10a1fe2ecac537e51ae6d151b223b78de9fafdd50e5eb6b08c243df173c80"},
 ]
 rmapy = [
-    {file = "rmapy-0.2.2-py3-none-any.whl", hash = "sha256:07fdcb5d9f5aa547d0691370ac3e5a53c973021c5422dc5a80b266360b5a2954"},
-    {file = "rmapy-0.2.2.tar.gz", hash = "sha256:0f1cdea9219711ec258fdd0a2cbb0351d45b5ac976ef8a423c3d42d4555db317"},
+    {file = "rmapy-0.2.3-py3-none-any.whl", hash = "sha256:714567d844eee5c3015edc915734342bb977a4db5140ba4a6b371b88d4284c18"},
+    {file = "rmapy-0.2.3.tar.gz", hash = "sha256:a80a2102166488f2752b46124618779f158094bf6ba8454cc418fc99693e9918"},
 ]
 safety = [
     {file = "safety-1.10.3-py2.py3-none-any.whl", hash = "sha256:5f802ad5df5614f9622d8d71fedec2757099705c2356f862847c58c6dfe13e84"},
