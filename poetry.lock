@@ -159,7 +159,7 @@ pipenv = ["pipenv"]
 
 [[package]]
 name = "dynaconf"
-version = "3.1.2"
+version = "3.1.3"
 description = "The dynamic configurator for your Python Project"
 category = "main"
 optional = false
@@ -963,8 +963,8 @@ dparse = [
     {file = "dparse-0.5.1.tar.gz", hash = "sha256:a1b5f169102e1c894f9a7d5ccf6f9402a836a5d24be80a986c7ce9eaed78f367"},
 ]
 dynaconf = [
-    {file = "dynaconf-3.1.2-py2.py3-none-any.whl", hash = "sha256:808adfe964f10695846dbf8dad7632e47fc3bc38860fd1887ed57dddffc4eff2"},
-    {file = "dynaconf-3.1.2.tar.gz", hash = "sha256:9b34ab2f811a81755f5eb4beac77a69e1e0887528c7e37fc4bc83fed52dcf502"},
+    {file = "dynaconf-3.1.3-py2.py3-none-any.whl", hash = "sha256:03fac8249b518975f362cd9cc3a23e8cab29b52d64ed57a970854322d6ffafc5"},
+    {file = "dynaconf-3.1.3.tar.gz", hash = "sha256:2f4d86086d98ea2ce2d99435c91bc707d7b5c28f6bf6288e23ca4f93043c2c8b"},
 ]
 filelock = [
     {file = "filelock-3.0.12-py3-none-any.whl", hash = "sha256:929b7d63ec5b7d6b71b0fa5ac14e030b3f70b75747cef1b10da9b879fef15836"},
