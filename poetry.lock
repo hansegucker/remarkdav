@@ -458,7 +458,7 @@ python-versions = ">=2.6"
 
 [[package]]
 name = "peewee"
-version = "3.14.3"
+version = "3.14.4"
 description = "a little orm"
 category = "main"
 optional = false
@@ -1124,7 +1124,7 @@ pbr = [
     {file = "pbr-5.5.1.tar.gz", hash = "sha256:5fad80b613c402d5b7df7bd84812548b2a61e9977387a80a5fc5c396492b13c9"},
 ]
 peewee = [
-    {file = "peewee-3.14.3.tar.gz", hash = "sha256:c90281517168448fa876e9a6c28d6c4f675ece1e42bc722f1fc8abf349edb497"},
+    {file = "peewee-3.14.4.tar.gz", hash = "sha256:9e356b327c2eaec6dd42ecea6f4ddded025793dba906a3d065a0452e726c51a2"},
 ]
 pluggy = [
     {file = "pluggy-0.13.1-py2.py3-none-any.whl", hash = "sha256:966c145cd83c96502c3c3868f50408687b38434af77734af1e9ca461a4081d2d"},
