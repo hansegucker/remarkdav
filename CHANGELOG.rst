@@ -1,6 +1,10 @@
 Changelog
 =========
 
+v1.0
+----
+* Update dependencies
+
 v1.0-beta4
 ----------
 * Use rmapi for uploading documents instead of rmapy because files uploaded by rmapy seems to be corrupt sometimes
