@@ -6,14 +6,3 @@ updates:
     interval: daily
     time: "04:00"
   open-pull-requests-limit: 10
-  ignore:
-  - dependency-name: black
-    versions:
-    - 21.4b0
-    - 21.4b1
-  - dependency-name: flake8-rst-docstrings
-    versions:
-    - 0.1.2
-  - dependency-name: flake8
-    versions:
-    - 3.9.0
