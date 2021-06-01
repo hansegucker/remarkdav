@@ -1,6 +1,10 @@
 Changelog
 =========
 
+v1.0.1
+------
+* Update dependencies
+
 v1.0
 ----
 * Update dependencies

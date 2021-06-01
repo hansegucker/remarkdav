@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "remarkdav"
-version = "1.0.post0"
+version = "1.0.1"
 description = "A tool to sync webdav files (only PDF) to the reMarkable cloud"
 authors = ["Jonathan Weth <dev@jonathanweth.de>"]
 readme = "README.rst"
