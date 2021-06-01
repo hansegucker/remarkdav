@@ -19,6 +19,6 @@ jobs:
       - name: Configure poetry
         run: poetry config virtualenvs.create false
       - name: Install dependencies
-        run: poetry install && pip install tox && pip install -U pip
+        run: pip install tox && tox -e setupci
       - name: Lint
         run: tox -e lint,security
