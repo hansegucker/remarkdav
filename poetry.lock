@@ -677,7 +677,7 @@ docutils = ">=0.11,<1.0"
 
 [[package]]
 name = "rmapy"
-version = "0.2.5"
+version = "0.3.0"
 description = "Remarkable Cloud Api Client"
 category = "main"
 optional = false
@@ -879,7 +879,7 @@ testing = ["pytest (>=4.6)", "pytest-checkdocs (>=1.2.3)", "pytest-flake8", "pyt
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "2e4fc1e29a2240a965240711c76ebf73be4812c83a15952b9511532863e37a1d"
+content-hash = "1240e2143c31674e7534a2dbbdd8fa82374c5a2cd3b3e8d0d7d8624219cafd49"
 
 [metadata.files]
 appdirs = [
@@ -1295,8 +1295,8 @@ restructuredtext-lint = [
     {file = "restructuredtext_lint-1.3.2.tar.gz", hash = "sha256:d3b10a1fe2ecac537e51ae6d151b223b78de9fafdd50e5eb6b08c243df173c80"},
 ]
 rmapy = [
-    {file = "rmapy-0.2.5-py3-none-any.whl", hash = "sha256:bcded5a8241fbe8092c9e0f1094581bca8d510881ec650dd8b8dd9c613c20a1c"},
-    {file = "rmapy-0.2.5.tar.gz", hash = "sha256:9dc0ae90be45a699c07c885d98d43aa4737f8a4951df604ada0be7972eb1aa08"},
+    {file = "rmapy-0.3.0-py3-none-any.whl", hash = "sha256:f7ec169dac43c68d6e08be456c2f6329f092be78bbf2653aeb3526df1e151f1f"},
+    {file = "rmapy-0.3.0.tar.gz", hash = "sha256:d12a6504cb9a918c519ed15720028a26553da9b0c44829f07969d85726be23ee"},
 ]
 safety = [
     {file = "safety-1.10.3-py2.py3-none-any.whl", hash = "sha256:5f802ad5df5614f9622d8d71fedec2757099705c2356f862847c58c6dfe13e84"},

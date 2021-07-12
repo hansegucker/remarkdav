@@ -12,7 +12,7 @@ click = ">=7.1.2,<9.0.0"
 webdavclient3 = "^3.14.5"
 dateparser = "^1.0.0"
 peewee = "^3.14.0"
-rmapy = "^0.2.2"
+rmapy = ">=0.2.2,<0.4.0"
 fpdf = "^1.7.2"
 PyPDF2 = "^1.26.0"
 
