@@ -17,7 +17,7 @@ fpdf = "^1.7.2"
 PyPDF2 = "^1.26.0"
 
 [tool.poetry.dev-dependencies]
-tox = "^3.23.1"
+tox = "^3.24.0"
 pytest = "^6.2"
 safety = "^1.10.3"
 flake8 = "^3.9.2"
