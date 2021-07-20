@@ -1,6 +1,10 @@
 Changelog
 =========
 
+v1.0.2
+------
+* Update dependencies (especially rmapy)
+
 v1.0.1
 ------
 * Update dependencies
