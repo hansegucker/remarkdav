@@ -18,7 +18,7 @@ PyPDF2 = "^1.26.0"
 
 [tool.poetry.dev-dependencies]
 tox = "^3.24.5"
-pytest = "^6.2"
+pytest = "^7.0"
 safety = "^1.10.3"
 flake8 = "^4.0.1"
 flake8-fixme = "^1.1.1"
