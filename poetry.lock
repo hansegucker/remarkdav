@@ -239,19 +239,6 @@ flake8-polyfill = "*"
 pycodestyle = "*"
 
 [[package]]
-name = "flake8-black"
-version = "0.2.5"
-description = "flake8 plugin to call black as a code style validator"
-category = "dev"
-optional = false
-python-versions = "*"
-
-[package.dependencies]
-black = "*"
-flake8 = ">=3.0.0"
-toml = "*"
-
-[[package]]
 name = "flake8-builtins"
 version = "1.5.3"
 description = "Check for python builtins being used as variables or parameters."
@@ -953,7 +940,7 @@ testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "9523a83c82247f8079f65ce178a97d8c372953856ac2d2e559d3919afebb6aa6"
+content-hash = "e155bc54a3f9017ca516ef4b96dbeb5b4b7b70619b9eaf51a92ef7e6929e2269"
 
 [metadata.files]
 atomicwrites = [
@@ -1079,10 +1066,6 @@ flake8 = [
 ]
 flake8-bandit = [
     {file = "flake8_bandit-2.1.2.tar.gz", hash = "sha256:687fc8da2e4a239b206af2e54a90093572a60d0954f3054e23690739b0b0de3b"},
-]
-flake8-black = [
-    {file = "flake8-black-0.2.5.tar.gz", hash = "sha256:fb6372cc90da129eec492989485a4f99d976f41d4072536470c18e0da0164724"},
-    {file = "flake8_black-0.2.5-py3-none-any.whl", hash = "sha256:022744ef1513f9a0b748c65ae2a81024d71b992c88f48212187a3fdbb4988943"},
 ]
 flake8-builtins = [
     {file = "flake8-builtins-1.5.3.tar.gz", hash = "sha256:09998853b2405e98e61d2ff3027c47033adbdc17f9fe44ca58443d876eb00f3b"},
