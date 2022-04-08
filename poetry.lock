@@ -579,7 +579,7 @@ diagrams = ["jinja2", "railroad-diagrams"]
 
 [[package]]
 name = "pypdf2"
-version = "1.26.0"
+version = "1.27.0"
 description = "PDF toolkit"
 category = "main"
 optional = false
@@ -1291,7 +1291,8 @@ pyparsing = [
     {file = "pyparsing-3.0.7.tar.gz", hash = "sha256:18ee9022775d270c55187733956460083db60b37d0d0fb357445f3094eed3eea"},
 ]
 pypdf2 = [
-    {file = "PyPDF2-1.26.0.tar.gz", hash = "sha256:e28f902f2f0a1603ea95ebe21dff311ef09be3d0f0ef29a3e44a932729564385"},
+    {file = "PyPDF2-1.27.0-py3-none-any.whl", hash = "sha256:4b181b3d86794cfefb5df04d4685c8ade883968a5f731439c414f10641602cc0"},
+    {file = "PyPDF2-1.27.0.tar.gz", hash = "sha256:20fb6795712e9d1ea73ae61a3e3c4c9580c051a31a6b9961dfb55445c6ce5d6a"},
 ]
 pytest = [
     {file = "pytest-7.1.1-py3-none-any.whl", hash = "sha256:92f723789a8fdd7180b6b06483874feca4c48a5c76968e03bb3e7f806a1869ea"},
