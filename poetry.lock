@@ -580,7 +580,7 @@ diagrams = ["jinja2", "railroad-diagrams"]
 
 [[package]]
 name = "pypdf2"
-version = "1.27.6"
+version = "1.27.7"
 description = "A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files"
 category = "main"
 optional = false
@@ -1292,8 +1292,8 @@ pyparsing = [
     {file = "pyparsing-3.0.7.tar.gz", hash = "sha256:18ee9022775d270c55187733956460083db60b37d0d0fb357445f3094eed3eea"},
 ]
 pypdf2 = [
-    {file = "PyPDF2-1.27.6-py3-none-any.whl", hash = "sha256:a5ad0438eca255278b73d3d43d3e6662b26a594ede899e7edd347a88b4f9b500"},
-    {file = "PyPDF2-1.27.6.tar.gz", hash = "sha256:3a3c0585678279b93a4c0fa31fb6f6217cfbdac3f6d3dcd1dfc9888579f3e858"},
+    {file = "PyPDF2-1.27.7-py3-none-any.whl", hash = "sha256:51855f5df6f25b825f7bc8f63066819ef6c5654ac01c191ed657ee456153574b"},
+    {file = "PyPDF2-1.27.7.tar.gz", hash = "sha256:fd35f4e6bb8f050a809fec3eecb6c3603f5043584b57002f7c5b26660d6b16ce"},
 ]
 pytest = [
     {file = "pytest-7.1.1-py3-none-any.whl", hash = "sha256:92f723789a8fdd7180b6b06483874feca4c48a5c76968e03bb3e7f806a1869ea"},
