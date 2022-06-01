@@ -14,7 +14,7 @@ dateparser = "^1.0.0"
 peewee = "^3.14.0"
 rmapy = ">=0.2.2,<0.4.0"
 fpdf = "^1.7.2"
-PyPDF2 = "^1.26.0"
+PyPDF2 = ">=1.26,<3.0"
 
 [tool.poetry.dev-dependencies]
 tox = "^3.25.0"
